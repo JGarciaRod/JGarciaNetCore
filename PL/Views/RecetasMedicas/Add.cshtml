@@ -1,0 +1,53 @@
+﻿@model ML.RecetasMedicas
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+@using (Html.BeginForm("Add", "RecetasMedicas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model=> model.IdRecetas);
+
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.Paciente.IdPaciente, new { @class = "hidden" })
+
+            @Html.DropDownListFor(model => model.Paciente.IdPaciente, new SelectList(Model.Paciente.Pacientes, "IdPaciente", "Nombre"), "Selecciona un paciente", new { @class = "form-controls" })
+        </div>
+
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.FechaConsulta, new { @class = "hidden" })
+            @Html.TextBoxFor(model => model.FechaConsulta, new { @class = "coll-auto" , @placeholder = "DD-MM-AAAA"})
+        </div>
+
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.Diagnostico, new { @class = "hidden" })
+            @Html.TextBoxFor(model => model.Diagnostico, new { @class = "coll-auto"})
+        </div>
+
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.NombreMedico, new { @class = "hidden" })
+            @Html.TextBoxFor(model => model.NombreMedico, new { @class = "coll-auto"})
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.NotasAdicionales, new { @class = "hidden" })
+            @Html.TextBoxFor(model => model.NotasAdicionales, new { @class = "coll-auto"})
+        </div>
+
+        <div class="col-md-1">
+            <input type="submit" data-toggle="modal" class="btn btn-success" value="Guardar" />
+        </div>
+        <div class="col-md-1">
+            <a id="back" class="btn btn-danger" href="@Url.Action("GetAllReceta", "RecetasMedicas")">Volver</a>
+        </div>
+
+    </div>
+
+    
+
+}
+}

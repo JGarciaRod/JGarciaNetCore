@@ -1,0 +1,58 @@
+﻿@model ML.RecetasMedicas;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+
+@if (Model.Recetas != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+
+            <a class="btn btn-success" href=@Url.Action("Add","RecetasMedicas" , new {IdReceta = 0})>Agregar nueva receta</a>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Fecha consulta</th>
+                        <th>Diagnostico</th>
+                        <th>Nombre del Medico</th>
+                        <th>Notas Adicionales</th>
+                        <th>Actualizar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                @foreach (ML.RecetasMedicas recetas in Model.Recetas)
+                {
+                    <tr>
+
+                        <td>@recetas.FechaConsulta</td>
+                        <td>@recetas.Diagnostico</td>
+                        <td>@recetas.NombreMedico</td>
+                        <td>@recetas.NotasAdicionales</td>
+
+                        <td>
+                            <a class="btn btn-warning" href="@Url.Action("Add","RecetasMedicas",new { IdReceta = recetas.IdRecetas } )">Actualizar </a>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-danger" href="@Url.Action("Dell","RecetasMedicas", new {IdReceta = recetas.IdRecetas, onclick="return confirm('Estas seguro que deseas eliminar esta receta?');" } )"> Eliminar</a>
+                        </td>
+
+                    </tr>
+                }
+
+                <tbody>
+
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+}
+
+}
